@@ -21,7 +21,7 @@ gulp.task('sass-compile', function () {
         .pipe(srcmaps.init())
         .pipe(sass()) // Magic
         .pipe(srcmaps.write())
-        .pipe(gulp.dest('build/css')); // Помещаем скомпилированные CSS файлы в папку /css
+        .pipe(gulp.dest('docs/css')); // Помещаем скомпилированные CSS файлы в папку /css
 });
 
 gulp.task('sass-build', function () {
@@ -30,34 +30,34 @@ gulp.task('sass-build', function () {
         // .pipe(srcmaps.init())
         .pipe(sass()) // Magic
         // .pipe(srcmaps.write())
-        .pipe(gulp.dest('build/css')); // Помещаем скомпилированные CSS файлы в папку /css
+        .pipe(gulp.dest('docs/css')); // Помещаем скомпилированные CSS файлы в папку /css
 });
 
 
 gulp.task('cssmini', function () {
-    return gulp.src('build/css/style.css')
+    return gulp.src('docs/css/style.css')
         .pipe(cssnano())
         .pipe(rename({
             suffix: '.min'
         }))
         .pipe(autoprefixer(['last 15 versions']))
-        .pipe(gulp.dest('build/css'))
+        .pipe(gulp.dest('docs/css'))
 });
 
 gulp.task('jsugly', function () {
     gulp.src('js/*.js')
-        .pipe(gulp.dest('build/js/'));
+        .pipe(gulp.dest('docs/js/'));
 });
 
 gulp.task('csslibs', function () {
     gulp.src('scss/libs/*.css')
-        .pipe(gulp.dest('build/css/libs'));
+        .pipe(gulp.dest('docs/css/libs'));
 });
 
 gulp.task('browser-sync', function () {
     browsync.init([paths.html, paths.scss, paths.js], {
         server: {
-            baseDir: 'build/'
+            baseDir: 'docs/'
         },
         // proxy: "localhost", // Перенаправляем запросы на локальный сервер (для интеграции с CMS)
         notify: false // Отключаем уведомления от BrowserSync
@@ -67,7 +67,7 @@ gulp.task('browser-sync', function () {
 gulp.task('htmlbuild', function () {
     gulp.src('src/*.html') //Выберем исходные файлы
         .pipe(rigger()) //Прогон через rigger
-        .pipe(gulp.dest('build/')) //Складываем их в папку build
+        .pipe(gulp.dest('docs/')) //Складываем их в папку build
         .pipe(browsync.reload({
             stream: true
         })); //И перезагрузим наш сервер для обновлений
