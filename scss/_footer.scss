@@ -99,6 +99,9 @@ footer {
   &:focus {
     color: #fff;
   }
+  @media screen and (max-width: 400px) {
+    padding: 13px 0;
+}
 }
 
 .sub-form__btn {

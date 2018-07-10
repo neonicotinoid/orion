@@ -201,6 +201,9 @@ body {
     @media screen and #{$tablet} {
         bottom: 60px !important;
     }
+    @media screen and (max-width: 380px) { 
+        bottom: 10px !important;
+    }
 }
 
 .swiper-pagination-bullet {
